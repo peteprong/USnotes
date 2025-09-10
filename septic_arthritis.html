@@ -1,1 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Septic Arthritis in Australian Children: A Focus on Indigenous Health & The Role of Ultrasound</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            min-height: 100px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .flowchart-step:hover {
+            transform: translateY(-5px);
+        }
+        .flowchart-arrow {
+            font-size: 2.5rem;
+            line-height: 1;
+            color: #7A5195;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        @media (min-width: 768px) {
+            .flowchart-arrow {
+                margin: 0;
+            }
+        }
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-800">
 
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003F5C] mb-2">Septic Arthritis in Australian Children</h1>
+            <p class="text-lg text-[#374C80]">A Health Disparity and the Critical Role of Diagnostic Ultrasound</p>
+        </header>
+        
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003F5C] mb-4 text-center">An Urgent Health Disparity</h2>
+                <p class="text-center mb-6 max-w-3xl mx-auto">Septic arthritis, a painful and destructive bacterial infection of a joint, is an orthopaedic emergency. If not diagnosed and treated rapidly, it can lead to lifelong disability. In Australia, studies reveal a significant and concerning disparity in its incidence, with Indigenous children being disproportionately affected.</p>
+                <div class="flex justify-center items-center bg-gradient-to-r from-[#BC5090] to-[#EF5675] p-8 rounded-lg shadow-xl text-white">
+                    <div class="text-center">
+                        <p class="text-2xl font-semibold mb-2">Indigenous Australian children are over</p>
+                        <p class="text-8xl font-bold">6x</p>
+                        <p class="text-2xl font-semibold mt-2">more likely to develop septic arthritis than non-Indigenous children.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003F5C] mb-2">Incidence Rate Comparison</h2>
+                <p class="mb-4 text-gray-600">Data from population-based studies in Australia highlight a stark difference in the annual incidence rate (AIR) of septic arthritis among children, measured per 100,000 population.</p>
+                <div class="chart-container">
+                    <canvas id="incidenceRateChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-center text-gray-500">This visualization clearly shows the significantly higher burden of septic arthritis within Indigenous communities, underscoring the need for targeted health strategies and rapid diagnostic pathways.</p>
+            </section>
+
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003F5C] mb-2">Common Causative Bacteria</h2>
+                <p class="mb-4 text-gray-600">The infection is caused by bacteria entering the joint space. While several organisms can be responsible, one is predominantly identified in pediatric cases across Australia.</p>
+                <div class="chart-container">
+                    <canvas id="bacteriaChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-center text-gray-500"><i>Staphylococcus aureus</i> is the leading cause, often originating from a skin infection or spreading through the bloodstream. Early identification of the pathogen is vital for effective antibiotic treatment.</p>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003F5C] mb-4 text-center">The Diagnostic Pathway: Speed is Critical</h2>
+                <p class="text-center mb-8 max-w-3xl mx-auto">For a child presenting with a painful, swollen joint and fever, clinicians must act quickly. The diagnostic process is a race against time to prevent permanent joint damage. Ultrasound plays a pivotal, non-invasive role early in this pathway.</p>
+                <div class="grid grid-cols-1 md:grid-cols-7 items-center gap-4">
+                    <div class="flowchart-step bg-[#FFA600] text-white">
+                        <p class="font-semibold">1. Clinical Suspicion<br><span class="font-normal text-sm">(Fever, joint pain, inability to bear weight)</span></p>
+                    </div>
+                    <div class="flowchart-arrow">→</div>
+                    <div class="flowchart-step bg-[#FF764A] text-white">
+                        <p class="font-semibold">2. Ultrasound Scan<br><span class="font-normal text-sm">(To detect joint effusion - fluid buildup)</span></p>
+                    </div>
+                    <div class="flowchart-arrow">→</div>
+                    <div class="flowchart-step bg-[#EF5675] text-white">
+                        <p class="font-semibold">3. Joint Aspiration<br><span class="font-normal text-sm">(Often ultrasound-guided to draw fluid)</span></p>
+                    </div>
+                    <div class="flowchart-arrow">→</div>
+                    <div class="flowchart-step bg-[#BC5090] text-white">
+                        <p class="font-semibold">4. Diagnosis & Treatment<br><span class="font-normal text-sm">(Lab analysis confirms infection; IV antibiotics begin)</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                 <h2 class="text-2xl font-bold text-[#003F5C] mb-4">Why Ultrasound is the First-Choice Imaging Tool</h2>
+                 <p class="mb-6 text-gray-600">When septic arthritis is suspected, ultrasound is the preferred initial imaging modality over X-ray or MRI. Its unique advantages make it ideal for the rapid, safe, and effective assessment of pediatric patients.</p>
+                 <div class="overflow-x-auto">
+                     <table class="w-full text-left border-collapse">
+                         <thead>
+                             <tr class="bg-[#003F5C] text-white">
+                                 <th class="p-3 font-semibold text-sm">Modality</th>
+                                 <th class="p-3 font-semibold text-sm">Primary Role</th>
+                                 <th class="p-3 font-semibold text-sm">Key Advantage</th>
+                                 <th class="p-3 font-semibold text-sm">Limitation</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr class="border-b hover:bg-slate-50">
+                                 <td class="p-3 font-bold text-[#7A5195]">Ultrasound</td>
+                                 <td class="p-3">Detect joint effusion (fluid) and guide aspiration.</td>
+                                 <td class="p-3">Fast, no radiation, portable, excellent for soft tissue.</td>
+                                 <td class="p-3">Cannot distinguish septic from sterile fluid.</td>
+                             </tr>
+                             <tr class="border-b hover:bg-slate-50">
+                                 <td class="p-3 font-bold text-gray-600">X-ray</td>
+                                 <td class="p-3">Rule out fractures or chronic bone issues.</td>
+                                 <td class="p-3">Quickly assesses bone structure.</td>
+                                 <td class="p-3">Poor at showing soft tissue or early infection.</td>
+                             </tr>
+                             <tr class="hover:bg-slate-50">
+                                 <td class="p-3 font-bold text-gray-600">MRI</td>
+                                 <td class="p-3">Detect associated bone infection (osteomyelitis).</td>
+                                 <td class="p-3">Highly detailed view of bone and soft tissue.</td>
+                                 <td class="p-3">Slow, expensive, often requires sedation in children.</td>
+                             </tr>
+                         </tbody>
+                     </table>
+                 </div>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003F5C] mb-4 text-center">Key Takeaways</h2>
+                <ul class="list-disc list-inside text-left max-w-xl mx-auto space-y-2 text-gray-700">
+                    <li>There is a critical health disparity, with Indigenous children facing a substantially higher risk of septic arthritis.</li>
+                    <li>Early diagnosis is paramount to prevent irreversible joint damage and long-term disability.</li>
+                    <li>Ultrasound is the cornerstone of initial diagnosis: it is a safe, rapid, and effective tool for detecting joint effusion, the hallmark sign of the condition.</li>
+                    <li>The use of ultrasound facilitates timely joint aspiration, leading to a definitive diagnosis and the prompt initiation of life- and limb-saving antibiotic therapy.</li>
+                    <li>Addressing this health gap requires awareness, improved access to care, and streamlined diagnostic protocols that leverage key technologies like ultrasound.</li>
+                </ul>
+            </section>
+
+            <!-- Interactive Quiz Section -->
+            <section class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003F5C] mb-4 text-center">Test Your Knowledge: A Quick Quiz</h2>
+                <form id="quizForm" class="space-y-6">
+                    <!-- Quiz questions will be dynamically inserted here -->
+                </form>
+                <div id="results" class="mt-6 hidden">
+                    <h3 class="text-xl font-bold text-[#003F5C] mb-2">Your Results</h3>
+                    <p id="scoreText" class="text-lg font-semibold text-gray-700"></p>
+                </div>
+                <div class="flex justify-center mt-6">
+                    <button id="submitBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-all duration-200 transform hover:scale-105">
+                        Submit Quiz
+                    </button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Chart.js configuration and setup from the original file
+            const wrapLabel = (label, maxLength = 16) => {
+                if (label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine.length > 0) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            };
+
+            const sharedTooltipCallback = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const brilliantBluesPalette = ['#374C80', '#EF5675'];
+            const brilliantBluesFull = ['#003F5C', '#7A5195', '#EF5675', '#FFA600'];
+
+            const originalIncidenceLabels = ['Indigenous Children', 'Non-Indigenous Children'];
+            const incidenceData = {
+                labels: originalIncidenceLabels.map(label => wrapLabel(label)),
+                datasets: [{
+                    label: 'Annual Incidence Rate per 100,000',
+                    data: [34.9, 5.5],
+                    backgroundColor: brilliantBluesPalette,
+                    borderColor: brilliantBluesPalette.map(color => color + 'B3'),
+                    borderWidth: 1
+                }]
+            };
+            const incidenceCtx = document.getElementById('incidenceRateChart').getContext('2d');
+            new Chart(incidenceCtx, {
+                type: 'bar',
+                data: incidenceData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Cases per 100,000 Children Annually'
+                            }
+                        }
+                    },
+                    plugins: {
+                        ...sharedTooltipCallback.plugins,
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            const originalBacteriaLabels = ['Staphylococcus aureus', 'Streptococcus species', 'Kingella kingae', 'Other'];
+            const bacteriaData = {
+                labels: originalBacteriaLabels.map(label => wrapLabel(label)),
+                datasets: [{
+                    label: 'Causative Organism',
+                    data: [49, 16, 10, 25],
+                    backgroundColor: brilliantBluesFull,
+                    hoverOffset: 4
+                }]
+            };
+            const bacteriaCtx = document.getElementById('bacteriaChart').getContext('2d');
+            new Chart(bacteriaCtx, {
+                type: 'doughnut',
+                data: bacteriaData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        ...sharedTooltipCallback.plugins,
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+
+            // Quiz logic
+            const quizQuestions = [
+                {
+                    question: "According to the infographic, what is the most common causative bacteria for septic arthritis in Australian children?",
+                    options: ["Streptococcus species", "Staphylococcus aureus", "Kingella kingae", "Other"],
+                    answer: "Staphylococcus aureus"
+                },
+                {
+                    question: "Compared to non-Indigenous children, Indigenous Australian children are how many times more likely to develop septic arthritis?",
+                    options: ["2x", "4x", "6x", "10x"],
+                    answer: "6x"
+                },
+                {
+                    question: "Why is ultrasound considered the first-choice imaging tool for suspected septic arthritis?",
+                    options: ["It can distinguish septic from sterile fluid", "It provides a highly detailed view of the bone", "It is fast, portable, and does not use radiation", "It is the only way to perform a joint aspiration"],
+                    answer: "It is fast, portable, and does not use radiation"
+                }
+            ];
+
+            const quizForm = document.getElementById('quizForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const resultsDiv = document.getElementById('results');
+            const scoreText = document.getElementById('scoreText');
+
+            const renderQuiz = () => {
+                quizQuestions.forEach((q, index) => {
+                    const questionDiv = document.createElement('div');
+                    questionDiv.classList.add('bg-slate-50', 'p-6', 'rounded-lg', 'shadow-inner');
+
+                    const questionText = document.createElement('h3');
+                    questionText.classList.add('text-lg', 'font-semibold', 'text-gray-700', 'mb-3');
+                    questionText.textContent = `${index + 1}. ${q.question}`;
+                    questionDiv.appendChild(questionText);
+
+                    const optionsDiv = document.createElement('div');
+                    optionsDiv.classList.add('space-y-2');
+                    
+                    q.options.forEach(option => {
+                        const optionLabel = document.createElement('label');
+                        optionLabel.classList.add('flex', 'items-center', 'text-gray-600', 'hover:text-purple-600', 'cursor-pointer');
+                        
+                        const optionInput = document.createElement('input');
+                        optionInput.type = 'radio';
+                        optionInput.name = `question${index}`;
+                        optionInput.value = option;
+                        optionInput.classList.add('mr-2', 'accent-purple-600');
+                        
+                        optionLabel.appendChild(optionInput);
+                        optionLabel.innerHTML += option;
+                        optionsDiv.appendChild(optionLabel);
+                    });
+                    
+                    questionDiv.appendChild(optionsDiv);
+                    quizForm.appendChild(questionDiv);
+                });
+            };
+
+            const checkAnswers = () => {
+                let score = 0;
+                quizQuestions.forEach((q, index) => {
+                    const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                    const questionDiv = quizForm.children[index];
+                    const feedback = document.createElement('p');
+                    feedback.classList.add('mt-2', 'font-semibold');
+
+                    if (selectedOption) {
+                        if (selectedOption.value === q.answer) {
+                            score++;
+                            feedback.textContent = 'Correct!';
+                            feedback.classList.add('text-green-600');
+                        } else {
+                            feedback.textContent = `Incorrect. The correct answer is: ${q.answer}`;
+                            feedback.classList.add('text-red-600');
+                        }
+                    } else {
+                        feedback.textContent = 'You did not select an answer.';
+                        feedback.classList.add('text-yellow-600');
+                    }
+                    questionDiv.appendChild(feedback);
+                });
+                
+                return score;
+            };
+
+            const showResults = (score) => {
+                resultsDiv.classList.remove('hidden');
+                scoreText.textContent = `You scored ${score} out of ${quizQuestions.length}.`;
+            };
+
+            submitBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Clear previous feedback
+                document.querySelectorAll('#quizForm p.mt-2').forEach(el => el.remove());
+                resultsDiv.classList.add('hidden');
+                const score = checkAnswers();
+                showResults(score);
+            });
+
+            renderQuiz();
+        });
+    </script>
+
+</body>
+</html>
