@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Septic Arthritis in Australian Children: A Focus on Indigenous Health & The Role of Ultrasound</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            min-height: 100px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .flowchart-step:hover {
+            transform: translateY(-5px);
+        }
+        .flowchart-arrow {
+            font-size: 2.5rem;
+            line-height: 1;
+            color: #7A5195;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        @media (min-width: 768px) {
+            .flowchart-arrow {
+                margin: 0;
+            }
+        }
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003F5C] mb-2">Septic Arthritis in Australian Children</h1>
+            <p class="text-lg text-[#374C80]">A Health Disparity and the Critical Role of Diagnostic Ultrasound</p>
+        </header>
+        
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003F5C] mb-4 text-center">An Urgent Health Disparity</h2>
+                <p class="text-center mb-6 max-w-3xl mx-auto">Septic arthritis, a painful and destructive bacterial infection of a joint, is an orthopaedic emergency. If not diagnosed and treated rapidly, it can lead to lifelong disability. In Australia, studies reveal a significant and concerning disparity in its incidence, with Indigenous children being disproportionately affected.</p>
+                <div class="flex justify-center items-center bg-gradient-to-r from-[#BC5090] to-[#EF5675] p-8 rounded-lg shadow-xl text-white">
+                    <div class="text-center">
+                        <p class="text-2xl font-semibold mb-2">Indigenous Australian children are over</p>
+                        <p class="text-8xl font-bold">6x</p>
+                        <p class="text-2xl font-semibold mt-2">more likely to develop septic arthritis than non-Indigenous children.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003F5C] mb-2">Incidence Rate Comparison</h2>
+                <p class="mb-4 text-gray-600">Data from population-based studies in Australia highlight a stark difference in the annual incidence rate (AIR) of septic arthritis among children, measured per 100,000 population.</p>
+                <div class="chart-container">
+                    <canvas id="incidenceRateChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-center text-gray-500">This visualization clearly shows the significantly higher burden of septic arthritis within Indigenous communities, underscoring the need for targeted health strategies and rapid diagnostic pathways.</p>
+            </section>
+
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003F5C] mb-2">Common Causative Bacteria</h2>
+                <p class="mb-4 text-gray-600">The infection is caused by bacteria entering the joint space. While several organisms can be responsible, one is predominantly identified in pediatric cases across Australia.</p>
+                <div class="chart-container">
+                    <canvas id="bacteriaChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-center text-gray-500"><i>Staphylococcus aureus</i> is the leading cause, often originating from a skin infection or spreading through the bloodstream. Early identification of the pathogen is vital for effective antibiotic treatment.</p>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003F5C] mb-4 text-center">The Diagnostic Pathway: Speed is Critical</h2>
+                <p class="text-center mb-8 max-w-3xl mx-auto">For a child presenting with a painful, swollen joint and fever, clinicians must act quickly. The diagnostic process is a race against time to prevent permanent joint damage. Ultrasound plays a pivotal, non-invasive role early in this pathway.</p>
+                <div class="grid grid-cols-1 md:grid-cols-7 items-center gap-4">
+                    <div class="flowchart-step bg-[#FFA600] text-white">
+                        <p class="font-semibold">1. Clinical Suspicion<br><span class="font-normal text-sm">(Fever, joint pain, inability to bear weight)</span></p>
+                    </div>
+                    <div class="flowchart-arrow">→</div>
+                    <div class="flowchart-step bg-[#FF764A] text-white">
+                        <p class="font-semibold">2. Ultrasound Scan<br><span class="font-normal text-sm">(To detect joint effusion - fluid buildup)</span></p>
+                    </div>
+                    <div class="flowchart-arrow">→</div>
+                    <div class="flowchart-step bg-[#EF5675] text-white">
+                        <p class="font-semibold">3. Joint Aspiration<br><span class="font-normal text-sm">(Often ultrasound-guided to draw fluid)</span></p>
+                    </div>
+                    <div class="flowchart-arrow">→</div>
+                    <div class="flowchart-step bg-[#BC5090] text-white">
+                        <p class="font-semibold">4. Diagnosis & Treatment<br><span class="font-normal text-sm">(Lab analysis confirms infection; IV antibiotics begin)</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                 <h2 class="text-2xl font-bold text-[#003F5C] mb-4">Why Ultrasound is the First-Choice Imaging Tool</h2>
+                 <p class="mb-6 text-gray-600">When septic arthritis is suspected, ultrasound is the preferred initial imaging modality over X-ray or MRI. Its unique advantages make it ideal for the rapid, safe, and effective assessment of pediatric patients.</p>
+                 <div class="overflow-x-auto">
+                     <table class="w-full text-left border-collapse">
+                         <thead>
+                             <tr class="bg-[#003F5C] text-white">
+                                 <th class="p-3 font-semibold text-sm">Modality</th>
+                                 <th class="p-3 font-semibold text-sm">Primary Role</th>
+                                 <th class="p-3 font-semibold text-sm">Key Advantage</th>
+                                 <th class="p-3 font-semibold text-sm">Limitation</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr class="border-b hover:bg-slate-50">
+                                 <td class="p-3 font-bold text-[#7A5195]">Ultrasound</td>
+                                 <td class="p-3">Detect joint effusion (fluid) and guide aspiration.</td>
+                                 <td class="p-3">Fast, no radiation, portable, excellent for soft tissue.</td>
+                                 <td class="p-3">Cannot distinguish septic from sterile fluid.</td>
+                             </tr>
+                             <tr class="border-b hover:bg-slate-50">
+                                 <td class="p-3 font-bold text-gray-600">X-ray</td>
+                                 <td class="p-3">Rule out fractures or chronic bone issues.</td>
+                                 <td class="p-3">Quickly assesses bone structure.</td>
+                                 <td class="p-3">Poor at showing soft tissue or early infection.</td>
+                             </tr>
+                             <tr class="hover:bg-slate-50">
+                                 <td class="p-3 font-bold text-gray-600">MRI</td>
+                                 <td class="p-3">Detect associated bone infection (osteomyelitis).</td>
+                                 <td class="p-3">Highly detailed view of bone and soft tissue.</td>
+                                 <td class="p-3">Slow, expensive, often requires sedation in children.</td>
+                             </tr>
+                         </tbody>
+                     </table>
+                 </div>
+            </section>
+
+            <section class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003F5C] mb-4 text-center">Key Takeaways</h2>
+                <ul class="list-disc list-inside text-left max-w-xl mx-auto space-y-2 text-gray-700">
+                    <li>There is a critical health disparity, with Indigenous children facing a substantially higher risk of septic arthritis.</li>
+                    <li>Early diagnosis is paramount to prevent irreversible joint damage and long-term disability.</li>
+                    <li>Ultrasound is the cornerstone of initial diagnosis: it is a safe, rapid, and effective tool for detecting joint effusion, the hallmark sign of the condition.</li>
+                    <li>The use of ultrasound facilitates timely joint aspiration, leading to a definitive diagnosis and the prompt initiation of life- and limb-saving antibiotic therapy.</li>
+                    <li>Addressing this health gap requires awareness, improved access to care, and streamlined diagnostic protocols that leverage key technologies like ultrasound.</li>
+                </ul>
+            </section>
+
+            <!-- Gemini API Section -->
+            <section class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#003F5C] mb-4 text-center">AI-Powered Learning Tools</h2>
+                <p class="text-center mb-6 max-w-3xl mx-auto text-gray-600">Use our AI-powered tools to deepen your understanding of the concepts presented in this infographic.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Explain a Term -->
+                    <div class="bg-slate-50 p-6 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4">Explain a Medical Term</h3>
+                        <div class="flex items-center gap-4 mb-4">
+                            <input type="text" id="termInput" placeholder="e.g., Joint Aspiration"
+                                class="flex-grow p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200">
+                            <button id="explainBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-200 transform hover:scale-105">
+                                ✨Explain✨
+                            </button>
+                        </div>
+                        <div id="termOutput" class="p-4 rounded-lg bg-white border border-gray-200 min-h-[50px]">
+                            <p class="text-gray-500">The explanation will appear here.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Generate a Case Study -->
+                    <div class="bg-slate-50 p-6 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-bold text-gray-700 mb-4">Generate a Case Study</h3>
+                        <div class="flex justify-center mb-4">
+                            <button id="caseStudyBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-200 transform hover:scale-105">
+                                ✨Generate Case Study✨
+                            </button>
+                        </div>
+                        <div id="caseStudyOutput" class="p-4 rounded-lg bg-white border border-gray-200 min-h-[100px]">
+                            <p class="text-gray-500">A new case study will be generated here.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="loading" class="hidden flex justify-center items-center mt-6">
+                    <div class="loading-spinner"></div>
+                    <p class="ml-4 text-gray-600">Generating response...</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapLabel = (label, maxLength = 16) => {
+                if (label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine.length > 0) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            };
+
+            const sharedTooltipCallback = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const brilliantBluesPalette = ['#374C80', '#EF5675'];
+            const brilliantBluesFull = ['#003F5C', '#7A5195', '#EF5675', '#FFA600'];
+
+            const originalIncidenceLabels = ['Indigenous Children', 'Non-Indigenous Children'];
+            const incidenceData = {
+                labels: originalIncidenceLabels.map(label => wrapLabel(label)),
+                datasets: [{
+                    label: 'Annual Incidence Rate per 100,000',
+                    data: [34.9, 5.5],
+                    backgroundColor: brilliantBluesPalette,
+                    borderColor: brilliantBluesPalette.map(color => color + 'B3'),
+                    borderWidth: 1
+                }]
+            };
+            const incidenceCtx = document.getElementById('incidenceRateChart').getContext('2d');
+            new Chart(incidenceCtx, {
+                type: 'bar',
+                data: incidenceData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Cases per 100,000 Children Annually'
+                            }
+                        }
+                    },
+                    plugins: {
+                        ...sharedTooltipCallback.plugins,
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            const originalBacteriaLabels = ['Staphylococcus aureus', 'Streptococcus species', 'Kingella kingae', 'Other'];
+            const bacteriaData = {
+                labels: originalBacteriaLabels.map(label => wrapLabel(label)),
+                datasets: [{
+                    label: 'Causative Organism',
+                    data: [49, 16, 10, 25],
+                    backgroundColor: brilliantBluesFull,
+                    hoverOffset: 4
+                }]
+            };
+            const bacteriaCtx = document.getElementById('bacteriaChart').getContext('2d');
+            new Chart(bacteriaCtx, {
+                type: 'doughnut',
+                data: bacteriaData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        ...sharedTooltipCallback.plugins,
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+            
+            // Gemini API Integration
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            const termInput = document.getElementById('termInput');
+            const explainBtn = document.getElementById('explainBtn');
+            const termOutput = document.getElementById('termOutput');
+            const caseStudyBtn = document.getElementById('caseStudyBtn');
+            const caseStudyOutput = document.getElementById('caseStudyOutput');
+            const loadingIndicator = document.getElementById('loading');
+
+            const showLoading = (element) => {
+                element.innerHTML = `<div class="flex items-center justify-center">
+                                         <div class="loading-spinner"></div>
+                                         <p class="ml-2 text-gray-600">Generating response...</p>
+                                     </div>`;
+                loadingIndicator.classList.remove('hidden');
+            };
+
+            const hideLoading = () => {
+                loadingIndicator.classList.add('hidden');
+            };
+
+            async function callGeminiAPI(prompt, systemPrompt) {
+                const payload = {
+                    contents: [{ parts: [{ text: prompt }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] }
+                };
+                
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(`API call failed with status: ${response.status}. Message: ${errorText}`);
+                    }
+                    
+                    const result = await response.json();
+                    return result?.candidates?.[0]?.content?.parts?.[0]?.text || 'No response generated.';
+                } catch (error) {
+                    console.error('Error calling Gemini API:', error);
+                    return 'Sorry, something went wrong. Please try again.';
+                }
+            }
+
+            explainBtn.addEventListener('click', async () => {
+                const term = termInput.value.trim();
+                if (!term) {
+                    termOutput.innerHTML = `<p class="text-red-500">Please enter a term to explain.</p>`;
+                    return;
+                }
+
+                showLoading(termOutput);
+                const systemPrompt = "You are a helpful assistant for a medical infographic. Explain the given medical term in a clear, simple, and concise way, suitable for a general audience. Do not use complex jargon. Keep the explanation to a single paragraph.";
+                const responseText = await callGeminiAPI(`Explain the term: "${term}"`, systemPrompt);
+                termOutput.innerHTML = `<p>${responseText}</p>`;
+                hideLoading();
+            });
+
+            caseStudyBtn.addEventListener('click', async () => {
+                showLoading(caseStudyOutput);
+                const systemPrompt = "You are an expert medical writer. Create a short, fictional case study about a child with septic arthritis. The case study should describe the clinical presentation, the diagnostic process including the use of ultrasound, and the final outcome. Write it as a single narrative paragraph. Do not include any headers, titles, or explicit labels like 'Case Study:'.";
+                const responseText = await callGeminiAPI("Generate a fictional case study for septic arthritis in a child.", systemPrompt);
+                caseStudyOutput.innerHTML = `<p>${responseText}</p>`;
+                hideLoading();
+            });
+
+        });
+    </script>
+
+</body>
+</html>
